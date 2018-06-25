@@ -24,4 +24,4 @@ Alice Morris
 
 #### OpenFace Software
 
-[OpenFace github](https://github.com/TadasBaltrusaitis/OpenFace)
+[OpenFace github](https://github.com/cmusatyalab/OpenFace)
