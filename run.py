@@ -1,12 +1,16 @@
 import os
 import time
+from datetime import datetime
+from picamera import PiCamera
 
-FRAMES = 1000
-TIMEBETWEEN = 6
+camera = PiCamera()
+
+FRAMES = 60
+TIMEBETWEEN = 10
 
 frameCount = 0
 while frameCount < FRAMES:
-    imageNumber = str(frameCount).zfill(7)
-    os.system("raspistill -o image%s.jpg"%(imageNumber))
+    imageNumber = str(frameCount).zfill(3)
+    camera.capture("image%s.jpg"%(imageNumber))
     frameCount += 1
-    time.sleep(TIMEBETWEEN - 6) #Takes roughly 6 seconds to take a picture
+    time.sleep(TIMEBETWEEN)
