@@ -13,6 +13,11 @@ Alice Morris
 
 ## Notes & Useful Links
 
+#### Deep Learning Things
+
+[virtual machine with DL packages](https://medium.com/@ageitgey/try-deep-learning-in-python-now-with-a-fully-pre-configured-vm-1d97d4c3e9b)
+
+
 #### Raspberry Pi
 
 [Raspberry Pi Website](https://www.raspberrypi.org)
