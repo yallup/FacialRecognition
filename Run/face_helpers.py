@@ -1,4 +1,5 @@
 from PIL import Image
+import numpy as np
 import face_recognition
 from picamera import PiCamera
 
@@ -23,14 +24,18 @@ def recognise_face_from_locations(image,locations,known_encodings,toleranceLevel
     # top, right, bottom, left = location
     # print("A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom, right))
     encodings = face_recognition.face_encodings(image, locations)
+    print('Encodings '+str(np.shape(encodings[0]))) 
     friends = 0
-    names = np.empty(len(known_encodings))
+    names = []
     for encoding in encodings:
         # Loop over each face found in the frame to see if it's someone we know.
         # See if the face is a match for the known face(s)
         for key in known_encodings:
+            print(key)
+            print(np.shape(known_encodings[key]))
+            print(np.shape(encoding))
             match = face_recognition.compare_faces([known_encodings[key]], encoding, tolerance=toleranceLevel)
             if match[0]:
-                friends += 1
                 names.append(key)
+                friends += 1
     return friends,names
