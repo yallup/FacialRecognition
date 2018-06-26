@@ -35,16 +35,17 @@ def runFaceRec():
 
     else:
     
+if __name__ == '__main__':
+    while on = True:
+        while face_detected = False:
+            # slowly capture images
+            for n in np.arange(np.floor(600/default_timestep)):            
+                camera.capture('/home/pi/FacialRecognition/Run/buffer/image{}.jpg'.format(str(timestep).zfill(2)))
+                
+                # run face detect script 
+                
+                sleep(timestep)
 
-while on = True:
-    while face_detected = False:
-        # slowly capture images
-        for n in np.arange(np.floor(600/default_timestep)):            
-            camera.capture('/home/pi/FacialRecognition/Run/buffer/image{}.jpg'.format(str(timestep).zfill(2)))
-            
-            # run face detect script 
-            
-            sleep(timestep)
-
-              
-
+        p = Pool(processes=3)          
+        
+        output = p.map(captureVideo, runFaceRec(), )
