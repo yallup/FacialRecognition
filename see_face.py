@@ -29,7 +29,7 @@ def recognise_face_from_locations(image,locations,known_encodings,toleranceLevel
                 if match[0]:
                     friends += 1
                     print("I see someone named {}!".format(key))
-
+            return friends
 
 obama_image = face_recognition.load_image_file("face_rec_ex/obama_small.jpg")
 obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
@@ -43,4 +43,5 @@ image = face_recognition.load_image_file("face_rec_ex/two_people.jpg")
 
 did_see, locations = see_face(image)
 print(did_see)
-recognise_face_from_locations(image,locations,known_encodings,0.5)
+nFriends = recognise_face_from_locations(image,locations,known_encodings,0.5)
+print('I have '+nFriends+' friends')
