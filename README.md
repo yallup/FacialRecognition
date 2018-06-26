@@ -30,3 +30,5 @@ Alice Morris
 #### OpenFace Software
 
 [OpenFace github](https://github.com/cmusatyalab/OpenFace)
+
+[Face Recognition github](https://github.com/ageitgey/face_recognition)
