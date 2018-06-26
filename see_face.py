@@ -15,18 +15,19 @@ def see_face(image):
 
 
 def recognise_face_from_locations(image,locations,known_encodings,tolerance):
-    for location in locations:
         # Print the location of each face in this image
         # top, right, bottom, left = location
         # print("A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom, right))
-        encoding = face_recognition.face_encodings(image, location)
-        # Loop over each face found in the frame to see if it's someone we know.
-        # See if the face is a match for the known face(s)
-        match = face_recognition.compare_faces([known_encodings[0]], encoding)
-        name = "<Unknown Person>"
-        if match[0]:
-            name = "Barack Obama"
-        print("I see someone named {}!".format(name))
+        encodings = face_recognition.face_encodings(image, locations)
+
+        for encoding in encodings:
+            # Loop over each face found in the frame to see if it's someone we know.
+            # See if the face is a match for the known face(s)
+            match = face_recognition.compare_faces([known_encodings[0]], encoding)
+            name = "<Unknown Person>"
+            if match[0]:
+                name = "Barack Obama"
+            print("I see someone named {}!".format(name))
 
 
 obama_image = face_recognition.load_image_file("face_rec_ex/obama_small.jpg")
@@ -37,4 +38,5 @@ known_encodings = [obama_face_encoding]
 image = face_recognition.load_image_file("face_rec_ex/two_people.jpg")
 
 did_see, locations = see_face(image)
+print(did_see)
 recognise_face_from_locations(image,locations,known_encodings,0.5)
