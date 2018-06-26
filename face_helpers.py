@@ -1,5 +1,18 @@
 from PIL import Image
 import face_recognition
+from cv2 import VideoCapture
+from picamera import PiCamera
+
+def take_webcam_picture():
+    camera = VideoCapture(0)
+    retval,image = camera.read()
+    del camera
+    return image
+
+def take_picam_picture(res):
+    camera = PiCamera()
+    camera.resolution = (res,res)
+    camera.capture(raw_input('Enter name for picture: '))
 
 def see_face(image):
 
@@ -30,17 +43,16 @@ def recognise_face_from_locations(image,locations,known_encodings,toleranceLevel
                     print("I found {}!".format(key))
         return friends
 
-obama_image = face_recognition.load_image_file("face_rec_ex/obama_small.jpg")
-obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
-alice_image = face_recognition.load_image_file("face_rec_ex/images/Alice3.jpg")
-alice_face_encoding = face_recognition.face_encodings(alice_image)[0]
-known_encodings = { "Barack Obama":obama_face_encoding,
-                    "Alice Morris":alice_face_encoding }
+#obama_image = face_recognition.load_image_file("face_rec_ex/obama_small.jpg")
+#obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
+#alice_image = face_recognition.load_image_file("face_rec_ex/images/Alice3.jpg")
+#alice_face_encoding = face_recognition.face_encodings(alice_image)[0]
+#known_encodings = { "Barack Obama":obama_face_encoding, "Alice Morris":alice_face_encoding }
 
 # Load the jpg file into a numpy array
-image = face_recognition.load_image_file("face_rec_ex/two_people.jpg")
+#image = face_recognition.load_image_file("face_rec_ex/two_people.jpg")
 
-did_see, locations = see_face(image)
-print(did_see)
-nFriends = recognise_face_from_locations(image,locations,known_encodings,0.55)
-print('I have '+str(nFriends)+' friends')
+#did_see, locations = see_face(image)
+#print(did_see)
+#nFriends = recognise_face_from_locations(image,locations,known_encodings,0.55)
+#print('I have '+str(nFriends)+' friends')
