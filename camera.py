@@ -1,11 +1,11 @@
+import timeit
 from picamera import PiCamera
-from time import sleep
-
-name = raw_input('Enter name: ')
+from time import sleep, gmtime
 
 camera = PiCamera()
 
-camera.start_preview()
-sleep(5)
-camera.capture('/home/pi/FacialRecognition/face_rec_ex/'+str(name)+'.jpg')
-camera.stop_preview()
+#camera.start_preview()
+
+timeit.timeit("camera.capture('/home/pi/FacialRecognition/test.jpg')",number=1)
+
+#camera.stop_preview()
