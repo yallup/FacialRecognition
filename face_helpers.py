@@ -33,6 +33,7 @@ def recognise_face_from_locations(image,locations,known_encodings,toleranceLevel
         # print("A face is located at pixel location Top: {}, Left: {}, Bottom: {}, Right: {}".format(top, left, bottom, right))
         encodings = face_recognition.face_encodings(image, locations)
         friends = 0
+	names = np.empty(len(known_encodings))
         for encoding in encodings:
             # Loop over each face found in the frame to see if it's someone we know.
             # See if the face is a match for the known face(s)
@@ -40,19 +41,6 @@ def recognise_face_from_locations(image,locations,known_encodings,toleranceLevel
                 match = face_recognition.compare_faces([known_encodings[key]], encoding, tolerance=toleranceLevel)
                 if match[0]:
                     friends += 1
-                    print("I found {}!".format(key))
-        return friends
+		    names.append(key)
+        return friends,names
 
-#obama_image = face_recognition.load_image_file("face_rec_ex/obama_small.jpg")
-#obama_face_encoding = face_recognition.face_encodings(obama_image)[0]
-#alice_image = face_recognition.load_image_file("face_rec_ex/images/Alice3.jpg")
-#alice_face_encoding = face_recognition.face_encodings(alice_image)[0]
-#known_encodings = { "Barack Obama":obama_face_encoding, "Alice Morris":alice_face_encoding }
-
-# Load the jpg file into a numpy array
-#image = face_recognition.load_image_file("face_rec_ex/two_people.jpg")
-
-#did_see, locations = see_face(image)
-#print(did_see)
-#nFriends = recognise_face_from_locations(image,locations,known_encodings,0.55)
-#print('I have '+str(nFriends)+' friends')
