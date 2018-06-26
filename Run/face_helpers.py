@@ -37,10 +37,9 @@ def recognise_face_from_locations(image,locations,known_encodings,toleranceLevel
     for encoding in encodings:
     # Loop over each face found in the frame to see if it's someone we know.
     # See if the face is a match for the known face(s)
-        for key in known_encodings:
-        match = face_recognition.compare_faces([known_encodings[key]], encoding, tolerance=toleranceLevel)
-        if match[0]:
-            friends += 1
+    for key in known_encodings:
+    match = face_recognition.compare_faces([known_encodings[key]], encoding, tolerance=toleranceLevel)
+    if match[0]:
+        friends += 1
 	    names.append(key)
-        return friends,names
-
+    return friends,names
