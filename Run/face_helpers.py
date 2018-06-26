@@ -1,13 +1,6 @@
 from PIL import Image
 import face_recognition
-from cv2 import VideoCapture
 from picamera import PiCamera
-
-def take_webcam_picture():
-    camera = VideoCapture(0)
-    retval,image = camera.read()
-    del camera
-    return image
 
 def take_picam_picture(res):
     camera = PiCamera()

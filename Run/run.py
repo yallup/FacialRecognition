@@ -6,6 +6,7 @@ import numpy as np
 from picamera import PiCamera
 from time import gmtime, strftime, sleep
 from multiprocessing import Pool
+from face_helpers import see_face, recognise_face_from_locations
 
 default_timestep = 10 # seconds
 on = True
@@ -27,7 +28,7 @@ def captureVideo():
         sleep(1)
 
 def runFaceRec(current_image, loc, trusted_faces):
-        
+    print('HomeID  |  Starting facial recognition')
     # run face recognition 
     number_of_friends, friend_names = recognise_face_from_locations(current_image, loc, trusted_faces, 0.55)
     
@@ -35,11 +36,13 @@ def runFaceRec(current_image, loc, trusted_faces):
 
     if number_of_friends >= 1:
         # say welcome
-        if number_of_friends = 1:  
-            subprocess.call('espeak \"welcome home {}\" 2>/dev/null'.format(friend_names[0])        
-        else :
+        if number_of_friends == 1:  
+            print('HomeID  |  1 Friend')
+            subprocess.call('espeak \"welcome home {}\" 2>/dev/null'.format(friend_names[0]))
+        else:
+            print('HomeID  |  More than one friend')
             s = ' , '.join([n for n in friend_names[:-1]])+' and '+friend_names[-1]
-            subprocess.call('espeak \"welcome home {}\" 2>/dev/null'.format(s)        
+            subprocess.call('espeak \"welcome home {}\" 2>/dev/null'.format(s) )
 
         
         # add entry to log
@@ -51,6 +54,7 @@ def runFaceRec(current_image, loc, trusted_faces):
         face_trusted = True
 
     else:
+        print('HomeID  |  intruder detected')
         subprocess.call('espeak \"INTRUDER ALERT\" 2>/dev/null')        
     
         face_trusted = False
@@ -59,15 +63,18 @@ def runFaceRec(current_image, loc, trusted_faces):
     return face_trusted, face_detected
 
 face_detected = False
-while on = True:
-    while face_detected = False:
+while on == True:
+    print('HomeID Loaded...')
+    while face_detected == False:
         # slowly capture images
         for n in np.arange(np.floor(600/default_timestep)):            
-            fname = '/home/pi/FacialRecognition/Run/buffer/image{}.jpg'.format(str(n).zfill(2))
+            fname = '/home/pi/FacialRecognition/Run/buffer/image{}.jpg'.format(str(int(n)))
             camera.capture(fname)
             current_image = face_recognition.load_image_file(fname)
             face_detected, loc = see_face(current_image) 
+            print(face_detected)
             sleep(timestep)
+    print('Face found')
 
     p = Pool(processes=2)          
 
