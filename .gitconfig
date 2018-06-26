@@ -2,8 +2,7 @@
 	name = apmorris
 	email = alice.morris@cern.ch
 [core]
-	editor = atom --wait
-	excludesfile = /Users/Alice/.gitignore_global
+	editor = nano
 [color]
 	ui = always
 [alias]
