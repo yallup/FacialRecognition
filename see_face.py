@@ -39,7 +39,7 @@ known_encodings = { "Barack Obama":obama_face_encoding,
                     "Alice Morris":alice_face_encoding }
 
 # Load the jpg file into a numpy array
-image = face_recognition.load_image_file("face_rec_ex/images/Alice1.jpg")
+image = face_recognition.load_image_file("face_rec_ex/two_people.jpg")
 
 did_see, locations = see_face(image)
 print(did_see)
