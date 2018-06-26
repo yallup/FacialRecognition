@@ -1,0 +1,35 @@
+alias ri="rm -i"
+alias rr="rm -ir"
+
+alias mv="mv -i"
+
+alias lxplus="ssh -Y apmorris@lxplus.cern.ch"
+alias ucl-hep="ssh plus1"
+alias ucl-desk="ssh pc160"
+
+alias eos='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select'
+alias eosforceumount='killall eosfsd 2>/dev/null; killall -9 eosfsd 2>/dev/null; fusermount -u '
+alias eosmount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select -b fuse mount'
+alias eosumount='/afs/cern.ch/project/eos/installation/0.3.84-aquamarine/bin/eos.select -b fuse umount'
+
+alias imgcat='/afs/cern.ch/user/a/apmorris/.iterm2/imgcat'
+alias it2dl='/afs/cern.ch/user/a/apmorris/.iterm2/it2dl'
+
+alias l.='ls -ltrdph .*'
+alias ll='ls -ltrph'
+alias la='ls -ltraph'
+alias mc='. /usr/libexec/mc/mc-wrapper.sh'
+alias vi='vim'
+#alias which='alias | /usr/bin/which --tty-only --read-alias --show-dot --show-tilde'
+
+alias mnt-lxplus-user='sshfs apmorris@lxplus.cern.ch:/afs/cern.ch/user/a/apmorris/ /Users/Alice/Remotes/LXPlusUser/mount -o defer_permissions '
+alias mnt-lxplus-work='sshfs apmorris@lxplus.cern.ch:/afs/cern.ch/work/a/apmorris/ /Users/Alice/Remotes/LXPlusWork/mount -o defer_permissions '
+alias mnt-lxplus-eos='sshfs apmorris@lxplus.cern.ch:/eos/user/a/apmorris/ /Users/Alice/Remotes/LXPlusEOS/mount -o defer_permissions '
+alias mnt-pcatuw6='ssh -f pcatuw6 -N; sshfs pcatuw6:/home/apmorris/ /Users/Alice/Remotes/PCatUW6/mount -o defer_permissions'
+
+alias mnt-ucl-home='sshfs apmorris@plus1.hep.ucl.ac.uk:~/ /Users/Alice/Remotes/UCLHome/mount -o defer_permissions '
+alias mnt-ucl-atlas='ssh -f pc160 -N; sshfs pc160:/unix/atlas3/apmorris/ /Users/Alice/Remotes/UCLATLAS/mount -o defer_permissions '
+
+alias umount-all='umount /Users/Alice/Remotes/*/mount'
+
+alias close-tunnels=`for pid in $(ps ax | grep "ssh -f" | awk '{print $1}' | awk -F\: '{print $2}'); do kill -9 $pid; done 2>/dev/null`

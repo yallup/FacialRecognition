@@ -1,0 +1,23 @@
+[user]
+	name = apmorris
+	email = alice.morris@cern.ch
+[core]
+	editor = atom --wait
+	excludesfile = /Users/Alice/.gitignore_global
+[color]
+	ui = always
+[alias]
+	st = status
+	br = branch
+	co = checkout
+	lg = log --color --graph --pretty=format:'%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(blue)(%cr) %C(cyan)<%an>%Creset' --abbrev-commit
+	unstage = reset HEAD --
+	last = log -1 HEAD
+	co = checkout
+	ci = commit
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path =
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
