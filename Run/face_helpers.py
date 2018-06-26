@@ -12,7 +12,7 @@ def see_face(image):
     # This method is fairly accurate, but not as good as CNN.
     # See also: find_faces_in_picture_cnn.py
     locations = face_recognition.face_locations(image)
-    if locations[0] != 0:
+    if len(locations) != 0:
         did_see = True
     else:
         did_see = False
